@@ -7,6 +7,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* <Route path="/watchlist" element={<Watchlist/>}/> */}
+        {/* <Route path="/portfolio" element={<Portfolio/>}/> */}
       </Routes>
     </>
   );
