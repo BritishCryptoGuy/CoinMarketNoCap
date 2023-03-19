@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import Header from "./Components/Header";
-import Home from "./Components/Home";
+import TrendingHome from "./Components/TrendingHome";
 function App() {
   return (
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<TrendingHome />} />
         {/* <Route path="/watchlist" element={<Watchlist/>}/> */}
         {/* <Route path="/portfolio" element={<Portfolio/>}/> */}
       </Routes>

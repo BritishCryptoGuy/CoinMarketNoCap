@@ -1,0 +1,61 @@
+import { useState } from "react";
+
+function TrendingHome() {
+  const [trending, setTrending] = useState(false);
+  const trendingStyle = {
+    trendingDiv: {
+      width: "100%",
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-evenly",
+    },
+  };
+  function fetchTrending() {
+    fetch("https://api.coingecko.com/api/v3/search/trending", {
+      headers: {
+        accept: "application/json",
+      },
+      method: "GET",
+      // mode: "no-cors",
+    })
+      .then((response) => response.json())
+      .then((data) => setTrending(data.coins))
+      .catch((error) => console.error(error));
+  }
+  fetchTrending();
+  return (
+    <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          padding: "20px",
+          backgroundColor: "white",
+          margin: "20px auto",
+          width: "50%",
+          borderRadius: "8px",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+        }}
+      >
+        <h1>Top trending cryptocurrencies </h1>
+      </div>
+      <div style={trendingStyle.trendingDiv}>
+        {trending &&
+          trending.map((coin, index) => (
+            <div className="card" key={index}>
+              <h1 style={{ color: "red", margin: "0 0 10px 0" }}>
+                #{index + 1}
+              </h1>
+              <img src={coin.item.large} alt="Placeholder Image" />
+              <h3>{coin.item.name}</h3>
+              <p>Ticker: {coin.item.symbol}</p>
+              <p>Market Cap rank: {coin.item.market_cap_rank}</p>
+              {/* <p>Price in BTC: {coin.item.price_btc}</p> */}
+            </div>
+          ))}
+      </div>
+    </>
+  );
+}
+
+export default TrendingHome;
