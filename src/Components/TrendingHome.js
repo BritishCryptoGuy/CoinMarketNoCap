@@ -29,7 +29,7 @@ function TrendingHome() {
         style={{
           display: "flex",
           justifyContent: "center",
-          padding: "20px",
+          padding: "10px",
           backgroundColor: "white",
           margin: "20px auto",
           width: "50%",
@@ -43,19 +43,27 @@ function TrendingHome() {
         {trending &&
           trending.map((coin, index) => (
             <div className="card" key={index}>
-              <h1 style={{ color: "red", margin: "0 0 10px 0" }}>
-                #{index + 1}
-              </h1>
-              <img src={coin.item.large} alt="Placeholder Image" />
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <h1 style={{ color: "red", margin: "0 0 10px 0" }}>
+                  #{index + 1}
+                </h1>
+                <img src={coin.item.small} alt="Coin logo" />
+              </div>
               <h3>{coin.item.name}</h3>
               <p>Ticker: {coin.item.symbol}</p>
               <p>Market Cap rank: {coin.item.market_cap_rank}</p>
-              {/* <p>Price in BTC: {coin.item.price_btc}</p> */}
             </div>
           ))}
       </div>
     </>
   );
 }
+// curl -X 'GET' \ 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d' \ -H 'accept: application/json'
 
 export default TrendingHome;
