@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function ChartHome() {
   const [chart, setChart] = useState(false);
@@ -41,6 +41,15 @@ function ChartHome() {
       .catch((error) => console.error(error));
   }
   fetchChart();
+
+  function sort24Hour(e) {
+    e.preventDefault();
+    const sortBy24Hour = [...chart].sort(
+      (a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h
+    );
+    setChart(sortBy24Hour);
+  }
+
   return (
     <>
       <div style={chartHomeStyle.mainDiv}>
@@ -54,6 +63,23 @@ function ChartHome() {
           Cryptocurrencies by Market cap
         </h1>
         <div>
+          <div className="chartHomeDiv" style={chartHomeStyle.coinDiv}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-start",
+                paddingLeft: "18px",
+                width: "10%",
+              }}
+            >
+              <h2>#</h2>
+            </div>
+            <p>Coin Name</p>
+            <p>Current Price</p>
+            <p onClick={sort24Hour}>24H Action</p>
+            <p>Circulating Supply</p>
+            <p>Total Supply</p>
+          </div>
           {chart &&
             chart.map((coin, index) => (
               <div
@@ -68,7 +94,7 @@ function ChartHome() {
                     width: "10%",
                   }}
                 >
-                  <h2>#{coin.market_cap_rank}</h2>
+                  <h2>{coin.market_cap_rank}</h2>
                   <img
                     style={chartHomeStyle.image}
                     src={coin.image}
@@ -77,9 +103,17 @@ function ChartHome() {
                 </div>
                 <p>{coin.name}</p>
                 <p>${coin.current_price}</p>
-                <p>24H price:{coin.price_change_percentage_24h}</p>
-                <p>Circulating Supply:{coin.circulating_supply}</p>
-                <p>Total Supply:{coin.total_supply}</p>
+                <p
+                  className={
+                    coin.price_change_percentage_24h > 0
+                      ? "green priceChange"
+                      : "red priceChange"
+                  }
+                >
+                  {coin.price_change_percentage_24h}%
+                </p>
+                <p>{coin.circulating_supply}</p>
+                <p>{coin.total_supply}</p>
               </div>
             ))}
         </div>

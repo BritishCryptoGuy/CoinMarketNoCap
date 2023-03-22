@@ -82,3 +82,10 @@ a:hover {
 .chartHomeDiv p {
   width: 18%;
 }
+
+.green {
+  color: green;
+}
+.red {
+  color: red;
+}
