@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function TrendingHome() {
   const [trending, setTrending] = useState(false);
@@ -10,19 +10,22 @@ function TrendingHome() {
       justifyContent: "space-evenly",
     },
   };
-  function fetchTrending() {
-    fetch("https://api.coingecko.com/api/v3/search/trending", {
-      headers: {
-        accept: "application/json",
-      },
-      method: "GET",
-      // mode: "no-cors",
-    })
-      .then((response) => response.json())
-      .then((data) => setTrending(data.coins))
-      .catch((error) => console.error(error));
-  }
-  fetchTrending();
+  useEffect(() => {
+    function fetchTrending() {
+      fetch("https://api.coingecko.com/api/v3/search/trending", {
+        headers: {
+          accept: "application/json",
+        },
+        method: "GET",
+        // mode: "no-cors",
+      })
+        .then((response) => response.json())
+        .then((data) => setTrending(data.coins))
+        .catch((error) => console.error(error));
+    }
+    fetchTrending();
+  }, [setTrending]);
+
   return (
     <>
       <div

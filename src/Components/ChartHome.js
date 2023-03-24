@@ -24,30 +24,41 @@ function ChartHome() {
       width: "auto",
     },
   };
-  function fetchChart() {
-    fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d",
-      {
-        headers: {
-          accept: "application/json",
-        },
-        method: "GET",
-        // mode: "no-cors",
-        // setChart(data.coins)
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => setChart(data))
-      .catch((error) => console.error(error));
-  }
-  fetchChart();
+  useEffect(() => {
+    function fetchChart() {
+      fetch(
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h%2C24h%2C7d",
+        {
+          headers: {
+            accept: "application/json",
+          },
+          method: "GET",
+          // mode: "no-cors",
+          // setChart(data.coins)
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => setChart(data))
+        .catch((error) => console.error(error));
+    }
+    fetchChart();
+  }, [setChart]);
 
   function sort24Hour(e) {
     e.preventDefault();
-    const sortBy24Hour = [...chart].sort(
-      (a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h
-    );
-    setChart(sortBy24Hour);
+    e.target.toggleAttribute("descending");
+    let sortBy24Hour;
+    if (e.target.hasAttribute("descending")) {
+      sortBy24Hour = [...chart].sort(
+        (a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h
+      );
+      setChart(sortBy24Hour);
+    } else {
+      sortBy24Hour = [...chart].sort(
+        (a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h
+      );
+      setChart(sortBy24Hour);
+    }
   }
 
   return (
