@@ -19,6 +19,9 @@ function ChartHome() {
       alignItems: "center",
       borderBottom: "1px dotted grey",
     },
+    cursor: {
+      cursor: "pointer",
+    },
     image: {
       height: "60px",
       width: "auto",
@@ -47,18 +50,16 @@ function ChartHome() {
   function sort24Hour(e) {
     e.preventDefault();
     e.target.toggleAttribute("descending");
+    let filterBy = e.target.attributes[0].nodeValue;
     let sortBy24Hour;
     if (e.target.hasAttribute("descending")) {
-      sortBy24Hour = [...chart].sort(
-        (a, b) => b.price_change_percentage_24h - a.price_change_percentage_24h
-      );
-      setChart(sortBy24Hour);
+      sortBy24Hour = [...chart].sort((a, b) => b[filterBy] - a[filterBy]);
     } else {
-      sortBy24Hour = [...chart].sort(
-        (a, b) => a.price_change_percentage_24h - b.price_change_percentage_24h
-      );
-      setChart(sortBy24Hour);
+      sortBy24Hour = [...chart].sort((a, b) => a[filterBy] - b[filterBy]);
     }
+    setChart(sortBy24Hour);
+    console.log(filterBy);
+    console.log(sortBy24Hour);
   }
 
   return (
@@ -74,7 +75,7 @@ function ChartHome() {
           Cryptocurrencies by Market cap
         </h1>
         <div>
-          <div className="chartHomeDiv" style={chartHomeStyle.coinDiv}>
+          <div className="chartHomeDiv cursor" style={chartHomeStyle.coinDiv}>
             <div
               style={{
                 display: "flex",
@@ -83,13 +84,23 @@ function ChartHome() {
                 width: "10%",
               }}
             >
-              <h2>#</h2>
+              <h2 data-sort="market_cap_rank" onClick={sort24Hour}>
+                #
+              </h2>
             </div>
-            <p>Coin Name</p>
-            <p>Current Price</p>
-            <p onClick={sort24Hour}>24H Action</p>
-            <p>Circulating Supply</p>
-            <p>Total Supply</p>
+            <p style={{ cursor: "default" }}>Coin Name</p>
+            <p data-sort="current_price" onClick={sort24Hour}>
+              Current Price
+            </p>
+            <p data-sort="price_change_percentage_24h" onClick={sort24Hour}>
+              24H Action
+            </p>
+            <p data-sort="circulating_supply" onClick={sort24Hour}>
+              Circulating Supply
+            </p>
+            <p data-sort="total_supply" onClick={sort24Hour}>
+              Total Supply
+            </p>
           </div>
           {chart &&
             chart.map((coin, index) => (
