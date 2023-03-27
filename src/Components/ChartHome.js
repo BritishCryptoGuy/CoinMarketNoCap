@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ChartHome() {
   const [chart, setChart] = useState(false);
+  const navigate = useNavigate();
   const chartHomeStyle = {
     mainDiv: {
       display: "flex",
@@ -105,9 +107,17 @@ function ChartHome() {
           {chart &&
             chart.map((coin, index) => (
               <div
+                data-name={coin.name}
                 key={index}
                 className="chartHomeDiv"
                 style={chartHomeStyle.coinDiv}
+                onClick={(e) => {
+                  let cryptoSelection =
+                    e.target.closest("[data-name]").dataset.name;
+                  navigate("/currency", {
+                    state: { selected: cryptoSelection },
+                  });
+                }}
               >
                 <div
                   style={{
