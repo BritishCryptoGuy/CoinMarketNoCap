@@ -60,8 +60,6 @@ function ChartHome() {
       sortBy24Hour = [...chart].sort((a, b) => a[filterBy] - b[filterBy]);
     }
     setChart(sortBy24Hour);
-    console.log(filterBy);
-    console.log(sortBy24Hour);
   }
 
   return (

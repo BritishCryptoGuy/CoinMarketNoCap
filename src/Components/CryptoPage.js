@@ -5,6 +5,30 @@ function CryptoPage(props) {
   const location = useLocation();
   const selectedCrypto = location.state.selected;
   const [currency, setCurrency] = useState(false);
+  const cryptoPageStyle = {
+    mainDiv: {
+      display: "flex",
+      flexDirection: "column",
+      backgroundColor: "white",
+      width: "100%",
+      margin: " auto",
+    },
+    fetchingDataStyle: {
+      display: "flex",
+      justifyContent: "center",
+      width: "80%",
+      height: "90%",
+      margin: "5px auto",
+      backgroundColor: "white",
+      alignItems: "center",
+      flexDirection: "column",
+      fontSize: "50px",
+    },
+    logo: {
+      width: "10%",
+      height: "auto",
+    },
+  };
 
   useEffect(() => {
     function fetchCurrency() {
@@ -13,22 +37,37 @@ function CryptoPage(props) {
           accept: "application/json",
         },
         method: "GET",
-        // mode: "no-cors",
-        // setChart(data.coins)
       })
         .then((response) => response.json())
-        .then((data) => setCurrency(data.coins[0]))
+        .then((data) => {
+          setCurrency(data.coins[0]);
+          console.log(data.coins[0]);
+        })
         .catch((error) => console.error(error));
     }
     fetchCurrency();
   }, [setCurrency]);
 
   return (
-    <div>
-      <div>
-        <p>{currency && currency.name} </p>
-      </div>
-    </div>
+    <>
+      {!currency ? (
+        <div style={cryptoPageStyle.fetchingDataStyle}>Fetching data!</div>
+      ) : (
+        <div style={cryptoPageStyle.mainDiv}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+          >
+            <p style={{ fontSize: "40px" }}>{currency.name} </p>
+
+            <img src={currency.large} style={cryptoPageStyle.logo} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
