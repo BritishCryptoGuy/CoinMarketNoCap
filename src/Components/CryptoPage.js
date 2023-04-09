@@ -32,16 +32,19 @@ function CryptoPage(props) {
 
   useEffect(() => {
     function fetchCurrency() {
-      fetch(`https://api.coingecko.com/api/v3/search?query=${selectedCrypto}`, {
-        headers: {
-          accept: "application/json",
-        },
-        method: "GET",
-      })
+      fetch(
+        `https://api.coingecko.com/api/v3/coins/bitcoin?tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`,
+        {
+          headers: {
+            accept: "application/json",
+          },
+          method: "GET",
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
-          setCurrency(data.coins[0]);
-          console.log(data.coins[0]);
+          setCurrency(data);
+          console.log(data);
         })
         .catch((error) => console.error(error));
     }
@@ -63,7 +66,7 @@ function CryptoPage(props) {
           >
             <p style={{ fontSize: "40px" }}>{currency.name} </p>
 
-            <img src={currency.large} style={cryptoPageStyle.logo} />
+            <img src={currency.image.large} style={cryptoPageStyle.logo} />
           </div>
         </div>
       )}
