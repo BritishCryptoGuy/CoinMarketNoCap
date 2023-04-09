@@ -105,7 +105,7 @@ function ChartHome() {
           {chart &&
             chart.map((coin, index) => (
               <div
-                data-name={coin.name}
+                data-name={coin.id}
                 key={index}
                 className="chartHomeDiv"
                 style={chartHomeStyle.coinDiv}

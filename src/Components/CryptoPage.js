@@ -25,15 +25,15 @@ function CryptoPage(props) {
       fontSize: "50px",
     },
     logo: {
-      width: "10%",
-      height: "auto",
+      width: "auto",
+      height: "5em",
     },
   };
 
   useEffect(() => {
     function fetchCurrency() {
       fetch(
-        `https://api.coingecko.com/api/v3/coins/bitcoin?tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`,
+        `https://api.coingecko.com/api/v3/coins/${selectedCrypto.toLowerCase()}?tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`,
         {
           headers: {
             accept: "application/json",
@@ -64,10 +64,56 @@ function CryptoPage(props) {
               alignItems: "center",
             }}
           >
-            <p style={{ fontSize: "40px" }}>{currency.name} </p>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+              }}
+            >
+              <p style={{ fontSize: "40px" }}>{currency.name} </p>
 
-            <img src={currency.image.large} style={cryptoPageStyle.logo} />
+              <img src={currency.image.large} style={cryptoPageStyle.logo} />
+            </div>
+            <div
+              style={{
+                width: "70%",
+                display: "flex",
+                alignItems: "flex-end",
+                flexDirection: "column",
+                fontSize: "15px",
+              }}
+            >
+              <p style={{ fontSize: "25px", paddingBottom: "10px" }}>
+                ${currency.market_data.current_price.usd}
+                <span
+                  className={
+                    currency.market_data.price_change_percentage_24h > 0
+                      ? "green"
+                      : "red"
+                  }
+                  style={{ paddingLeft: "20px" }}
+                >
+                  {currency.market_data.price_change_percentage_24h}
+                </span>
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "40%",
+                  color: "grey",
+                }}
+              >
+                <p>Low 24H: ${currency.market_data.low_24h.usd}</p>
+                <p>High 24H: ${currency.market_data.high_24h.usd}</p>
+              </div>
+            </div>
           </div>
+          <div id="marketCapDiv">
+            <p>Market cap and Volume data to be collected and displayed here</p>
+          </div>
+          <div id="descriptionDiv">{currency.description.en}</div>
         </div>
       )}
     </>
