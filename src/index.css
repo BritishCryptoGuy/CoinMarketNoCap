@@ -92,3 +92,22 @@ a:hover {
 .cursor {
   cursor: pointer;
 }
+#descriptionDiv {
+  padding: 20px;
+}
+#marketCapDiv {
+  display: flex;
+  justify-content: space-evenly;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  margin: 20px 10px 20px 10px;
+}
+.marketCol {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+.border {
+  height: auto;
+  border-left: 2px solid lightgray;
+}

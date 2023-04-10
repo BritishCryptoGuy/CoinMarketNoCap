@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import MarketAndVolume from "../Components/MarketAndVolume";
 
 function CryptoPage(props) {
   const location = useLocation();
@@ -27,6 +28,7 @@ function CryptoPage(props) {
     logo: {
       width: "auto",
       height: "5em",
+      padding: "0px 10px",
     },
   };
 
@@ -60,14 +62,15 @@ function CryptoPage(props) {
           <div
             style={{
               display: "flex",
-              justifyContent: "space-around",
+              justifyContent: "space-between",
               alignItems: "center",
+              padding: "0 30px",
             }}
           >
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-around",
+                justifyContent: "space-between",
                 alignItems: "center",
               }}
             >
@@ -110,9 +113,7 @@ function CryptoPage(props) {
               </div>
             </div>
           </div>
-          <div id="marketCapDiv">
-            <p>Market cap and Volume data to be collected and displayed here</p>
-          </div>
+          <MarketAndVolume prop={currency} />
           <div id="descriptionDiv">{currency.description.en}</div>
         </div>
       )}
