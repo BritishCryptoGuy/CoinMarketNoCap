@@ -89,6 +89,9 @@ a:hover {
 .red {
   color: red;
 }
+.grey {
+  color: #b3b5bb;
+}
 .cursor {
   cursor: pointer;
 }
@@ -101,6 +104,7 @@ a:hover {
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
   margin: 20px 10px 20px 10px;
+  height: 150px;
 }
 .marketCol {
   display: flex;
