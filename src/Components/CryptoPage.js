@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import MarketAndVolume from "../Components/MarketAndVolume";
+import Description from "./Description";
 
 function CryptoPage(props) {
   const location = useLocation();
@@ -114,7 +115,10 @@ function CryptoPage(props) {
             </div>
           </div>
           <MarketAndVolume prop={currency} />
-          <div id="descriptionDiv">{currency.description.en}</div>
+          <div id="chartAndDescription">
+            <div style={{ width: "70%" }}>This is where chart will live</div>
+            <Description prop={currency} />
+          </div>
         </div>
       )}
     </>

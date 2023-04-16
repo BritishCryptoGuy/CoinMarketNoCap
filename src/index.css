@@ -97,13 +97,15 @@ a:hover {
 }
 #descriptionDiv {
   padding: 20px;
+  width: 30%;
+  border-left: #b3b5bb 1px solid;
 }
 #marketCapDiv {
   display: flex;
   justify-content: space-evenly;
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
-  margin: 20px 10px 20px 10px;
+  margin: 20px 10px 50px 10px;
   height: 150px;
 }
 .marketCol {
@@ -114,4 +116,9 @@ a:hover {
 .border {
   height: auto;
   border-left: 2px solid lightgray;
+}
+
+#chartAndDescription {
+  display: flex;
+  border-top: #b3b5bb 1px solid;
 }

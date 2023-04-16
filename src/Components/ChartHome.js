@@ -142,8 +142,8 @@ function ChartHome() {
                 >
                   {coin.price_change_percentage_24h}%
                 </p>
-                <p>{coin.circulating_supply}</p>
-                <p>{coin.total_supply}</p>
+                <p>{coin.circulating_supply?.toLocaleString()}</p>
+                <p>{coin.total_supply?.toLocaleString()}</p>
               </div>
             ))}
         </div>
