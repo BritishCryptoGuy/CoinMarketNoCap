@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function TrendingHome() {
   const [trending, setTrending] = useState(false);
+  const navigate = useNavigate();
   const trendingStyle = {
     trendingDiv: {
       width: "100%",
@@ -45,7 +47,18 @@ function TrendingHome() {
       <div style={trendingStyle.trendingDiv}>
         {trending &&
           trending.map((coin, index) => (
-            <div className="card" key={index}>
+            <div
+              className="card"
+              key={index}
+              data-name={coin.item.name}
+              onClick={(e) => {
+                let cryptoSelection =
+                  e.target.closest("[data-name]").dataset.name;
+                navigate("/currency", {
+                  state: { selected: cryptoSelection },
+                });
+              }}
+            >
               <div
                 style={{
                   display: "flex",
