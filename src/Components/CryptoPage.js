@@ -5,7 +5,7 @@ import Description from "./Description";
 
 function CryptoPage(props) {
   const location = useLocation();
-  const selectedCrypto = location.state.selected;
+  const selectedCrypto = location.state.selected || false;
   const [currency, setCurrency] = useState(false);
   const cryptoPageStyle = {
     mainDiv: {
@@ -52,8 +52,7 @@ function CryptoPage(props) {
         .catch((error) => console.error(error));
     }
     fetchCurrency();
-  }, [setCurrency]);
-
+  }, [setCurrency, selectedCrypto]);
   return (
     <>
       {!currency ? (
@@ -77,7 +76,11 @@ function CryptoPage(props) {
             >
               <p style={{ fontSize: "40px" }}>{currency.name} </p>
 
-              <img src={currency.image.large} style={cryptoPageStyle.logo} />
+              <img
+                src={currency.image.large}
+                style={cryptoPageStyle.logo}
+                alt={currency.name + " logo"}
+              />
             </div>
             <div
               style={{

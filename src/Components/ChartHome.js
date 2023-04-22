@@ -46,8 +46,8 @@ function ChartHome() {
         .then((data) => setChart(data))
         .catch((error) => console.error(error));
     }
-    fetchChart();
-  }, [setChart]);
+    !chart && fetchChart();
+  }, [chart, setChart]);
 
   function sort24Hour(e) {
     e.preventDefault();

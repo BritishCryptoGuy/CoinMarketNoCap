@@ -12,6 +12,7 @@ const headerStyle = {
   h1Style: {
     fontFamily:
       "Inter,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,Helvetica,Arial,sans-serif",
+    color: "black",
   },
   spanStyle: {
     color: "red",
@@ -21,12 +22,15 @@ function Header() {
   return (
     <>
       <div style={headerStyle.headerDiv}>
-        <h1 style={headerStyle.h1Style}>
-          CoinMarket<span style={headerStyle.spanStyle}>No</span>Cap
-        </h1>
+        <NavLink to="/">
+          <h1 style={headerStyle.h1Style}>
+            CoinMarket<span style={headerStyle.spanStyle}>No</span>Cap
+          </h1>
+        </NavLink>
+
         <nav>
-          <NavLink path="/portfolio">Portfolio</NavLink>
-          <NavLink path="/watchlist">Watchlist</NavLink>
+          <NavLink to="/portfolio">Portfolio</NavLink>
+          <NavLink to="/watchlist">Watchlist</NavLink>
         </nav>
       </div>
     </>
