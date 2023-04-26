@@ -1,6 +1,6 @@
 function Description(props) {
   let currency = props.prop;
-  let description = currency.description.en;
+  let description = currency.description?.en || "No description available";
 
   return (
     <div id="descriptionDiv">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import MarketAndVolume from "../Components/MarketAndVolume";
 import Description from "./Description";
+import noImgFound from "../images/No-image-found.jpg";
 
 function CryptoPage(props) {
   const location = useLocation();
@@ -77,7 +78,7 @@ function CryptoPage(props) {
               <p style={{ fontSize: "40px" }}>{currency.name} </p>
 
               <img
-                src={currency.image.large}
+                src={currency.image?.large || noImgFound}
                 style={cryptoPageStyle.logo}
                 alt={currency.name + " logo"}
               />
@@ -92,16 +93,16 @@ function CryptoPage(props) {
               }}
             >
               <p style={{ fontSize: "25px", paddingBottom: "10px" }}>
-                ${currency.market_data.current_price.usd}
+                ${currency.market_data?.current_price.usd || "N/A"}
                 <span
                   className={
-                    currency.market_data.price_change_percentage_24h > 0
+                    currency.market_data?.price_change_percentage_24h > 0
                       ? "green"
-                      : "red"
+                      : "red" || ""
                   }
                   style={{ paddingLeft: "20px" }}
                 >
-                  {currency.market_data.price_change_percentage_24h}
+                  {currency.market_data?.price_change_percentage_24h || "N/A"}
                 </span>
               </p>
               <div
@@ -112,8 +113,8 @@ function CryptoPage(props) {
                   color: "grey",
                 }}
               >
-                <p>Low 24H: ${currency.market_data.low_24h.usd}</p>
-                <p>High 24H: ${currency.market_data.high_24h.usd}</p>
+                <p>Low 24H: ${currency.market_data?.low_24h.usd || "N/A"}</p>
+                <p>High 24H: ${currency.market_data?.high_24h.usd || "N/A"}</p>
               </div>
             </div>
           </div>

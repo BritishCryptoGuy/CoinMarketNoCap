@@ -10,13 +10,17 @@ function MarketAndVolume(props) {
         <div>
           <p className="grey">
             Rank:{" "}
-            <span style={{ color: "black" }}>{currency.market_cap_rank}</span>
+            <span style={{ color: "black" }}>
+              {currency?.market_cap_rank || "N/A"}
+            </span>
           </p>
-          <p>${currency.market_cap.usd.toLocaleString()}</p>
-          <p>24 change: {currency.market_cap_change_percentage_24h}</p>
+          <p>${currency?.market_cap.usd?.toLocaleString() || "N/A"}</p>
+          <p>
+            24 change: {currency?.market_cap_change_percentage_24h || "N/A"}
+          </p>
           <p>
             24h Volume / Market cap:{" "}
-            {currency.total_volume.usd / currency.market_cap.usd}
+            {currency?.total_volume.usd / currency?.market_cap.usd || "N/A"}
           </p>
         </div>
       </div>
@@ -28,7 +32,8 @@ function MarketAndVolume(props) {
         <div>
           <p>
             $
-            {currency.fully_diluted_valuation.usd.toLocaleString() || "Unknown"}
+            {currency?.fully_diluted_valuation.usd?.toLocaleString() ||
+              "Unknown"}
           </p>
         </div>
       </div>
@@ -39,7 +44,10 @@ function MarketAndVolume(props) {
           Volume
         </h3>
         <div>
-          <p>24 Hour Volume: ${currency.total_volume.usd.toLocaleString()}</p>
+          <p>
+            24 Hour Volume: $
+            {currency?.total_volume.usd?.toLocaleString() || "N/A"}
+          </p>
         </div>
       </div>
       <div className="border"></div>
@@ -49,9 +57,11 @@ function MarketAndVolume(props) {
           Circulating Supply
         </h3>
         <div>
-          <p>{currency.circulating_supply.toLocaleString()}</p>
-          <p>Max Supply: {currency.max_supply?.toLocaleString() || "--"}</p>
-          <p>Total Supply: {currency.total_supply.toLocaleString() || "--"}</p>
+          <p>{currency?.circulating_supply?.toLocaleString() || "N/A"}</p>
+          <p>Max Supply: {currency?.max_supply?.toLocaleString() || "--"}</p>
+          <p>
+            Total Supply: {currency?.total_supply?.toLocaleString() || "--"}
+          </p>
         </div>
       </div>
     </div>
