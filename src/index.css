@@ -122,3 +122,9 @@ a:hover {
   display: flex;
   border-top: #b3b5bb 1px solid;
 }
+
+#descriptionData a {
+  background-color: rgb(255, 255, 159, 0.6);
+  padding: 2px;
+  color: black;
+}
