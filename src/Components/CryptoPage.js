@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import MarketAndVolume from "../Components/MarketAndVolume";
 import Description from "./Description";
+import Socials from "./Socials";
+import PriceChart from "./PriceChart";
 import noImgFound from "../images/No-image-found.jpg";
 
 function CryptoPage(props) {
@@ -33,7 +35,6 @@ function CryptoPage(props) {
       padding: "0px 10px",
     },
   };
-
   useEffect(() => {
     function fetchCurrency() {
       fetch(
@@ -123,6 +124,7 @@ function CryptoPage(props) {
             <div style={{ width: "70%" }}>This is where chart will live</div>
             <Description prop={currency} />
           </div>
+          <Socials prop={currency} />
         </div>
       )}
     </>
