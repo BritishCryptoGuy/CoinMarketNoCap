@@ -1,12 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar } from "@fortawesome/free-solid-svg-icons";
-import {
-  faTwitter,
-  faFacebook,
-  faGithub,
-} from "@fortawesome/free-brands-svg-icons";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 function Socials(prop) {
+  const twitterLink = prop.prop.links.twitter_screen_name
+    ? "https://twitter.com/" + prop.prop.links.twitter_screen_name
+    : false;
+  const websiteLink = prop.prop.links.homepage[0]
+    ? prop.prop.links.homepage[0]
+    : false;
+  const githubLink = prop.prop.links.repos_url.github[0]
+    ? prop.prop.links.repos_url.github[0]
+    : false;
   const socialsStyle = {
     socialsDiv: {
       display: "flex",
@@ -20,8 +25,8 @@ function Socials(prop) {
   const twitterLogo = (
     <FontAwesomeIcon icon={faTwitter} style={{ color: "#1da1f2" }} />
   );
-  const facebookLogo = (
-    <FontAwesomeIcon icon={faFacebook} style={{ color: "#3b5998" }} />
+  const browserLogo = (
+    <FontAwesomeIcon icon={faLink} style={{ color: "#c40e0e" }} />
   );
   const githubLogo = (
     <FontAwesomeIcon icon={faGithub} style={{ color: "#000000" }} />
@@ -29,9 +34,15 @@ function Socials(prop) {
 
   return (
     <div style={socialsStyle.socialsDiv}>
-      <div style={socialsStyle.logo}>{twitterLogo} </div>
-      <div style={socialsStyle.logo}>{facebookLogo}</div>
-      <div style={socialsStyle.logo}>{githubLogo}</div>
+      <a style={socialsStyle.logo} href={twitterLink} target="_blank">
+        {twitterLogo}{" "}
+      </a>
+      <a style={socialsStyle.logo} href={websiteLink} target="_blank">
+        {browserLogo}
+      </a>
+      <a style={socialsStyle.logo} href={githubLink} target="_blank">
+        {githubLogo}
+      </a>
     </div>
   );
 }
