@@ -49,7 +49,6 @@ function CryptoPage(props) {
         .then((response) => response.json())
         .then((data) => {
           setCurrency(data);
-          console.log(data);
         })
         .catch((error) => console.error(error));
     }

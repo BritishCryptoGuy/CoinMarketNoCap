@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function TrendingHome() {
+function TrendingHome(prop) {
+  let { choice, setChoice } = prop.prop;
   const [trending, setTrending] = useState(false);
   const navigate = useNavigate();
   const trendingStyle = {
@@ -54,7 +55,9 @@ function TrendingHome() {
               onClick={(e) => {
                 let cryptoSelection =
                   e.target.closest("[data-name]").dataset.name;
-                navigate("/currency", {
+                let navName = "/currency/" + cryptoSelection;
+                setChoice(navName);
+                navigate(navName, {
                   state: { selected: cryptoSelection },
                 });
               }}

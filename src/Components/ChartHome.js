@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ChartHome() {
+function ChartHome(prop) {
+  let { choice, setChoice } = prop.prop;
   const [chart, setChart] = useState(false);
   const navigate = useNavigate();
   const chartHomeStyle = {
@@ -112,7 +113,9 @@ function ChartHome() {
                 onClick={(e) => {
                   let cryptoSelection =
                     e.target.closest("[data-name]").dataset.name;
-                  navigate("/currency", {
+                  let navName = "/currency/" + cryptoSelection;
+                  setChoice(navName);
+                  navigate(navName, {
                     state: { selected: cryptoSelection },
                   });
                 }}

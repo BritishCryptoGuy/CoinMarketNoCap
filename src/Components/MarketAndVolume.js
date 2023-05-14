@@ -1,6 +1,5 @@
 function MarketAndVolume(props) {
   const currency = props.prop.market_data;
-  console.log(currency);
   return (
     <div id="marketCapDiv">
       <div className="marketCol">
