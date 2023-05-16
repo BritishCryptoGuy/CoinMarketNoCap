@@ -15,7 +15,7 @@ const headerStyle = {
     color: "black",
   },
   spanStyle: {
-    color: "red",
+    color: "#8C1C13",
   },
 };
 function Header() {

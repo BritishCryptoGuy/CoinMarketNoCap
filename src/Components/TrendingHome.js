@@ -37,9 +37,9 @@ function TrendingHome(prop) {
           justifyContent: "center",
           padding: "10px",
           backgroundColor: "white",
-          margin: "20px auto",
-          width: "50%",
-          borderRadius: "8px",
+          margin: "5px auto 20px auto",
+          width: "80%",
+          borderRadius: "33px",
           boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
         }}
       >
