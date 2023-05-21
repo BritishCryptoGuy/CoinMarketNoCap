@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function ChartHome(prop) {
   let { choice, setChoice } = prop.prop;
@@ -10,9 +12,8 @@ function ChartHome(prop) {
       display: "flex",
       flexDirection: "column",
       backgroundColor: "white",
-      width: "99%",
+      width: "100%",
       margin: "auto",
-      borderRadius: "8px",
     },
     coinDiv: {
       width: "100%",
@@ -147,6 +148,7 @@ function ChartHome(prop) {
                 </p>
                 <p>{coin.circulating_supply?.toLocaleString()}</p>
                 <p>{coin.total_supply?.toLocaleString()}</p>
+                <FontAwesomeIcon icon={faStar} style={{ color: "grey" }} />
               </div>
             ))}
         </div>
