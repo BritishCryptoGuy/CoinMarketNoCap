@@ -148,7 +148,9 @@ function ChartHome(prop) {
                 </p>
                 <p>{coin.circulating_supply?.toLocaleString()}</p>
                 <p>{coin.total_supply?.toLocaleString()}</p>
-                <FontAwesomeIcon icon={faStar} style={{ color: "grey" }} />
+                <div className={"icon"} onClick={(e) => console.log(e)}>
+                  <FontAwesomeIcon icon={faStar} style={{ color: "grey" }} />
+                </div>
               </div>
             ))}
         </div>

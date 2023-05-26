@@ -1,4 +1,4 @@
-import { NavLink, Router } from "react-router-dom";
+import { NavLink, Router, useNavigate } from "react-router-dom";
 
 const headerStyle = {
   headerDiv: {
@@ -13,20 +13,21 @@ const headerStyle = {
     fontFamily:
       "Inter,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,Helvetica,Arial,sans-serif",
     color: "black",
+    cursor: "pointer",
   },
   spanStyle: {
     color: "#8C1C13",
   },
 };
 function Header() {
+  const navigate = useNavigate();
+
   return (
     <>
       <div style={headerStyle.headerDiv}>
-        <NavLink to="/">
-          <h1 style={headerStyle.h1Style}>
-            CoinMarket<span style={headerStyle.spanStyle}>No</span>Cap
-          </h1>
-        </NavLink>
+        <h1 style={headerStyle.h1Style} onClick={() => navigate("/")}>
+          CoinMarket<span style={headerStyle.spanStyle}>No</span>Cap
+        </h1>
 
         <nav>
           <NavLink to="/portfolio">Portfolio</NavLink>
