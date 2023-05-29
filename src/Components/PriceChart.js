@@ -1,16 +1,73 @@
-function PriceChart() {
-  // fetch(
-  //   `https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1`,
-  //   {
-  //     headers: {
-  //       accept: "application/json",
-  //     },
-  //     method: "GET",
-  //   }
-  // )
+import { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
+import moment from "moment";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend,
+} from "chart.js";
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend
+);
+
+function PriceChart(prop) {
+  let cryptoName = prop.prop.id;
+  let [cryptoObj, setCryptoObj] = useState(false);
+
+  useEffect(() => {
+    function fetchChart() {
+      fetch(
+        `https://api.coingecko.com/api/v3/coins/${cryptoName}/market_chart?vs_currency=usd&days=3d`,
+        {
+          headers: {
+            accept: "application/json",
+          },
+          method: "GET",
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => setCryptoObj(data.prices));
+    }
+    fetchChart();
+  }, [setCryptoObj]);
+
+  let chartData = !cryptoObj
+    ? false
+    : cryptoObj.map((val) => ({ x: val[0], y: val[1].toFixed(2) }));
+  chartData && console.log(chartData);
+
+  const options = {
+    responsive: true,
+  };
+  const data = {
+    labels:
+      chartData &&
+      chartData.map((val) => moment(val.x).format("MMMM Do, h:mm a")),
+    datasets: [
+      {
+        fill: true,
+        label: cryptoName,
+        data: chartData && chartData.map((val) => val.y),
+        borderColor: "rgb(140, 28, 19)",
+      },
+    ],
+  };
   return (
-    <div>
-      <div>Chart Here</div>
+    <div style={{ width: "70%" }}>
+      <Line options={options} data={data} />
     </div>
   );
 }

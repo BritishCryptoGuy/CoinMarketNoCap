@@ -49,6 +49,7 @@ function CryptoPage(props) {
         .then((response) => response.json())
         .then((data) => {
           setCurrency(data);
+          console.log(data);
         })
         .catch((error) => console.error(error));
     }
@@ -120,7 +121,8 @@ function CryptoPage(props) {
           </div>
           <MarketAndVolume prop={currency} />
           <div id="chartAndDescription">
-            <div style={{ width: "70%" }}>This is where chart will live</div>
+            {/* <div style={{ width: "70%" }}></div> */}
+            <PriceChart prop={currency} />
             <Description prop={currency} />
           </div>
           <Socials prop={currency} />
