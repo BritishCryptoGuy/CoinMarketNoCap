@@ -51,7 +51,7 @@ function TrendingHome(prop) {
             <div
               className="card"
               key={index}
-              data-name={coin.item.name}
+              data-name={coin.item.id}
               onClick={(e) => {
                 let cryptoSelection =
                   e.target.closest("[data-name]").dataset.name;

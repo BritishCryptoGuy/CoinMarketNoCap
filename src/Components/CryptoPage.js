@@ -36,6 +36,7 @@ function CryptoPage(props) {
     },
   };
   useEffect(() => {
+    console.log(selectedCrypto);
     function fetchCurrency() {
       fetch(
         `https://api.coingecko.com/api/v3/coins/${selectedCrypto.toLowerCase()}?tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`,

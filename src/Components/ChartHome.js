@@ -49,7 +49,7 @@ function ChartHome(prop) {
         .catch((error) => console.error(error));
     }
     !chart && fetchChart();
-  }, [chart, setChart]);
+  }, [setChart]);
 
   function sort24Hour(e) {
     e.preventDefault();

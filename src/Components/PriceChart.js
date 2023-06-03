@@ -36,7 +36,6 @@ function PriceChart(prop) {
   let [cryptoObj, setCryptoObj] = useState(false);
 
   function fetchChart(days) {
-    console.log(days);
     fetch(
       `https://api.coingecko.com/api/v3/coins/${cryptoName}/market_chart?vs_currency=usd&days=${
         days || "7"

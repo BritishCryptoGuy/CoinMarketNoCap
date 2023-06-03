@@ -3,13 +3,13 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faTwitter, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 function Socials(prop) {
-  const twitterLink = prop.prop.links.twitter_screen_name
+  const twitterLink = prop.prop.links?.twitter_screen_name
     ? "https://twitter.com/" + prop.prop.links.twitter_screen_name
     : false;
-  const websiteLink = prop.prop.links.homepage[0]
+  const websiteLink = prop.prop.links?.homepage[0]
     ? prop.prop.links.homepage[0]
     : false;
-  const githubLink = prop.prop.links.repos_url.github[0]
+  const githubLink = prop.prop.links?.repos_url.github[0]
     ? prop.prop.links.repos_url.github[0]
     : false;
   const socialsStyle = {
@@ -35,7 +35,7 @@ function Socials(prop) {
   return (
     <div style={socialsStyle.socialsDiv}>
       <a style={socialsStyle.logo} href={twitterLink} target="_blank">
-        {twitterLogo}{" "}
+        {twitterLogo}
       </a>
       <a style={socialsStyle.logo} href={websiteLink} target="_blank">
         {browserLogo}
