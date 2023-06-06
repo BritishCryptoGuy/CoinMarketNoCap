@@ -40,13 +40,14 @@ function ChartHome(prop) {
             accept: "application/json",
           },
           method: "GET",
-          // mode: "no-cors",
-          // setChart(data.coins)
         }
       )
         .then((response) => response.json())
         .then((data) => setChart(data))
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          console.error(error);
+          console.log(error);
+        });
     }
     !chart && fetchChart();
   }, [setChart]);
@@ -76,84 +77,93 @@ function ChartHome(prop) {
         >
           Cryptocurrencies by Market cap
         </h1>
-        <div>
-          <div className="chartHomeDiv cursor" style={chartHomeStyle.coinDiv}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                paddingLeft: "18px",
-                width: "10%",
-              }}
-            >
-              <h2 data-sort="market_cap_rank" onClick={sort24Hour}>
-                #
-              </h2>
-            </div>
-            <p style={{ cursor: "default" }}>Coin Name</p>
-            <p data-sort="current_price" onClick={sort24Hour}>
-              Current Price
-            </p>
-            <p data-sort="price_change_percentage_24h" onClick={sort24Hour}>
-              24H Action
-            </p>
-            <p data-sort="circulating_supply" onClick={sort24Hour}>
-              Circulating Supply
-            </p>
-            <p data-sort="total_supply" onClick={sort24Hour}>
-              Total Supply
-            </p>
+        {!chart && (
+          <div>
+            <h1 style={{ display: "flex", justifyContent: "center" }}>
+              Loading!
+            </h1>
           </div>
-          {chart &&
-            chart.map((coin, index) => (
+        )}
+        {chart && (
+          <div>
+            <div className="chartHomeDiv cursor" style={chartHomeStyle.coinDiv}>
               <div
-                data-name={coin.id}
-                key={index}
-                className="chartHomeDiv"
-                style={chartHomeStyle.coinDiv}
-                onClick={(e) => {
-                  let cryptoSelection =
-                    e.target.closest("[data-name]").dataset.name;
-                  let navName = "/currency/" + cryptoSelection;
-                  setChoice(navName);
-                  navigate(navName, {
-                    state: { selected: cryptoSelection },
-                  });
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  paddingLeft: "18px",
+                  width: "10%",
                 }}
               >
+                <h2 data-sort="market_cap_rank" onClick={sort24Hour}>
+                  #
+                </h2>
+              </div>
+              <p style={{ cursor: "default" }}>Coin Name</p>
+              <p data-sort="current_price" onClick={sort24Hour}>
+                Current Price
+              </p>
+              <p data-sort="price_change_percentage_24h" onClick={sort24Hour}>
+                24H Action
+              </p>
+              <p data-sort="circulating_supply" onClick={sort24Hour}>
+                Circulating Supply
+              </p>
+              <p data-sort="total_supply" onClick={sort24Hour}>
+                Total Supply
+              </p>
+            </div>
+            {chart &&
+              chart.map((coin, index) => (
                 <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    width: "10%",
+                  data-name={coin.id}
+                  key={index}
+                  className="chartHomeDiv"
+                  style={chartHomeStyle.coinDiv}
+                  onClick={(e) => {
+                    let cryptoSelection =
+                      e.target.closest("[data-name]").dataset.name;
+                    let navName = "/currency/" + cryptoSelection;
+                    setChoice(navName);
+                    navigate(navName, {
+                      state: { selected: cryptoSelection },
+                    });
                   }}
                 >
-                  <h2>{coin.market_cap_rank}</h2>
-                  <img
-                    style={chartHomeStyle.image}
-                    src={coin.image}
-                    alt="Coin logo"
-                  />
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-evenly",
+                      width: "10%",
+                    }}
+                  >
+                    <h2>{coin.market_cap_rank}</h2>
+                    <img
+                      style={chartHomeStyle.image}
+                      src={coin.image}
+                      alt="Coin logo"
+                    />
+                  </div>
+                  <p>{coin.name}</p>
+                  <p>${coin.current_price}</p>
+                  <p
+                    className={
+                      coin.price_change_percentage_24h > 0
+                        ? "green priceChange"
+                        : "red priceChange"
+                    }
+                  >
+                    {coin.price_change_percentage_24h}%
+                  </p>
+                  <p>{coin.circulating_supply?.toLocaleString()}</p>
+                  <p>{coin.total_supply?.toLocaleString()}</p>
+                  <div className={"icon"} onClick={(e) => console.log(e)}>
+                    <FontAwesomeIcon icon={faStar} style={{ color: "grey" }} />
+                  </div>
                 </div>
-                <p>{coin.name}</p>
-                <p>${coin.current_price}</p>
-                <p
-                  className={
-                    coin.price_change_percentage_24h > 0
-                      ? "green priceChange"
-                      : "red priceChange"
-                  }
-                >
-                  {coin.price_change_percentage_24h}%
-                </p>
-                <p>{coin.circulating_supply?.toLocaleString()}</p>
-                <p>{coin.total_supply?.toLocaleString()}</p>
-                <div className={"icon"} onClick={(e) => console.log(e)}>
-                  <FontAwesomeIcon icon={faStar} style={{ color: "grey" }} />
-                </div>
-              </div>
-            ))}
-        </div>
+              ))}
+          </div>
+        )}
       </div>
     </>
   );

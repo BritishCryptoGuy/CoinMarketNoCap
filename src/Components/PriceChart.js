@@ -84,10 +84,14 @@ function PriceChart(prop) {
         fill: true,
         label: cryptoName,
         data: chartData && chartData.map((val) => val.y),
-        borderColor: "rgb(140, 28, 19)",
+        borderColor:
+          chartData && chartData[0].y <= chartData.slice(-1)[0].y
+            ? "rgb(0, 128, 0)"
+            : "rgb(255, 0, 0)",
       },
     ],
   };
+
   return (
     <div style={{ width: "70%" }}>
       <Line options={options} data={data} />

@@ -84,10 +84,10 @@ a:hover {
 }
 
 .green {
-  color: green;
+  color: rgb(0, 128, 0);
 }
 .red {
-  color: red;
+  color: rgb(255, 0, 0);
 }
 .grey {
   color: #b3b5bb;

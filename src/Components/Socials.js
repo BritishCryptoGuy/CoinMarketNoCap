@@ -34,15 +34,21 @@ function Socials(prop) {
 
   return (
     <div style={socialsStyle.socialsDiv}>
-      <a style={socialsStyle.logo} href={twitterLink} target="_blank">
-        {twitterLogo}
-      </a>
-      <a style={socialsStyle.logo} href={websiteLink} target="_blank">
-        {browserLogo}
-      </a>
-      <a style={socialsStyle.logo} href={githubLink} target="_blank">
-        {githubLogo}
-      </a>
+      {twitterLink && (
+        <a style={socialsStyle.logo} href={twitterLink} target="_blank">
+          {twitterLogo}
+        </a>
+      )}
+      {browserLogo && (
+        <a style={socialsStyle.logo} href={websiteLink} target="_blank">
+          {browserLogo}
+        </a>
+      )}
+      {githubLink && (
+        <a style={socialsStyle.logo} href={githubLink} target="_blank">
+          {githubLogo}
+        </a>
+      )}
     </div>
   );
 }
