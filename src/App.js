@@ -3,11 +3,16 @@ import Header from "./Components/Header";
 import TrendingHome from "./Components/TrendingHome";
 import ChartHome from "./Components/ChartHome";
 import CryptoPage from "./Components/CryptoPage";
+import WatchlistPage from "./Components/WatchlistPage";
 import { useState } from "react";
 
 function App() {
   const [choice, setChoice] = useState("/currency/");
-  const [localWatchlist, setLocalWatchlist] = useState(false);
+  const [localWatchlist, setLocalWatchlist] = useState(
+    (localStorage.getItem("watchlist") &&
+      JSON.parse(localStorage.getItem("watchlist"))) ||
+      false
+  );
 
   return (
     <>
@@ -25,7 +30,12 @@ function App() {
           }
         />
         <Route path={choice} element={<CryptoPage />} />
-        {/* <Route path="/watchlist" element={<Watchlist/>}/> */}
+        <Route
+          path="/watchlist"
+          element={
+            <WatchlistPage prop={{ localWatchlist, setLocalWatchlist }} />
+          }
+        />
         {/* <Route path="/portfolio" element={<Portfolio/>}/> */}
       </Routes>
     </>

@@ -69,14 +69,14 @@ function ChartHome(prop) {
   }, [localWatchlist]);
 
   function watchlist(coin) {
-    console.log(coin.target);
+    let coinName = coin.target.closest("[data-name]").dataset.name;
     if (!localWatchlist) {
-      setLocalWatchlist([coin.target.closest("[data-name]").dataset.name]);
+      setLocalWatchlist([coinName]);
+    } else if (localWatchlist.includes(coinName)) {
+      //Remove from watchlist goes here
+      return;
     } else {
-      setLocalWatchlist([
-        ...localWatchlist,
-        coin.target.closest("[data-name]").dataset.name,
-      ]);
+      setLocalWatchlist([...localWatchlist, coinName]);
     }
   }
 
@@ -136,7 +136,6 @@ function ChartHome(prop) {
                   className="chartHomeDiv"
                   style={chartHomeStyle.coinDiv}
                   onClick={(e) => {
-                    console.log(e.target.localName);
                     if (e.target.localName === "path") {
                       watchlist(e);
                     } else {
