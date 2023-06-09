@@ -6,7 +6,9 @@ import CryptoPage from "./Components/CryptoPage";
 import { useState } from "react";
 
 function App() {
-  let [choice, setChoice] = useState("/currency/");
+  const [choice, setChoice] = useState("/currency/");
+  const [localWatchlist, setLocalWatchlist] = useState(false);
+
   return (
     <>
       <Header />
@@ -16,7 +18,9 @@ function App() {
           element={
             <>
               <TrendingHome prop={{ choice, setChoice }} />
-              <ChartHome prop={{ choice, setChoice }} />
+              <ChartHome
+                prop={{ choice, setChoice, localWatchlist, setLocalWatchlist }}
+              />
             </>
           }
         />

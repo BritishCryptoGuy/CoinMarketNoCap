@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function ChartHome(prop) {
-  let { choice, setChoice } = prop.prop;
+  let { choice, setChoice, localWatchlist, setLocalWatchlist } = prop.prop;
   const [chart, setChart] = useState(false);
   const navigate = useNavigate();
   const chartHomeStyle = {
@@ -64,6 +64,21 @@ function ChartHome(prop) {
     }
     setChart(sortBy24Hour);
   }
+  useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(localWatchlist));
+  }, [localWatchlist]);
+
+  function watchlist(coin) {
+    console.log(coin.target);
+    if (!localWatchlist) {
+      setLocalWatchlist([coin.target.closest("[data-name]").dataset.name]);
+    } else {
+      setLocalWatchlist([
+        ...localWatchlist,
+        coin.target.closest("[data-name]").dataset.name,
+      ]);
+    }
+  }
 
   return (
     <>
@@ -121,13 +136,18 @@ function ChartHome(prop) {
                   className="chartHomeDiv"
                   style={chartHomeStyle.coinDiv}
                   onClick={(e) => {
-                    let cryptoSelection =
-                      e.target.closest("[data-name]").dataset.name;
-                    let navName = "/currency/" + cryptoSelection;
-                    setChoice(navName);
-                    navigate(navName, {
-                      state: { selected: cryptoSelection },
-                    });
+                    console.log(e.target.localName);
+                    if (e.target.localName === "path") {
+                      watchlist(e);
+                    } else {
+                      let cryptoSelection =
+                        e.target.closest("[data-name]").dataset.name;
+                      let navName = "/currency/" + cryptoSelection;
+                      setChoice(navName);
+                      navigate(navName, {
+                        state: { selected: cryptoSelection },
+                      });
+                    }
                   }}
                 >
                   <div
@@ -157,9 +177,12 @@ function ChartHome(prop) {
                   </p>
                   <p>{coin.circulating_supply?.toLocaleString()}</p>
                   <p>{coin.total_supply?.toLocaleString()}</p>
-                  <div className={"icon"} onClick={(e) => console.log(e)}>
-                    <FontAwesomeIcon icon={faStar} style={{ color: "grey" }} />
-                  </div>
+
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    style={{ color: "grey" }}
+                    className={"icon"}
+                  />
                 </div>
               ))}
           </div>
