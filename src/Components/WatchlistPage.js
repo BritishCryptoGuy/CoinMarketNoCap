@@ -52,7 +52,7 @@ function WatchlistPage(props) {
         .catch((error) => console.error(error));
     }
     fetchWatchlist();
-  }, [fetchData, localWatchlist]);
+  }, [setFetchData]);
 
   function sort24Hour(e) {
     e.preventDefault();
@@ -78,7 +78,7 @@ function WatchlistPage(props) {
           padding: "20px",
         }}
       >
-        Watchlist
+        Your Watchlist
       </h1>
       {!fetchData && (
         <div>
