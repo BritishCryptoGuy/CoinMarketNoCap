@@ -33,7 +33,9 @@ function App() {
         <Route
           path="/watchlist"
           element={
-            <WatchlistPage prop={{ localWatchlist, setLocalWatchlist }} />
+            <WatchlistPage
+              prop={{ localWatchlist, setLocalWatchlist, choice, setChoice }}
+            />
           }
         />
         {/* <Route path="/portfolio" element={<Portfolio/>}/> */}
