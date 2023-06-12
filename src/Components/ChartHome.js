@@ -7,6 +7,7 @@ function ChartHome(prop) {
   let { choice, setChoice, localWatchlist, setLocalWatchlist } = prop.prop;
   const [chart, setChart] = useState(false);
   const navigate = useNavigate();
+
   const chartHomeStyle = {
     mainDiv: {
       display: "flex",
@@ -31,6 +32,15 @@ function ChartHome(prop) {
       width: "auto",
     },
   };
+  function starColor(star) {
+    if (!localWatchlist) {
+      return;
+    } else if (localWatchlist.includes(star)) {
+      return "yellow";
+    } else {
+      return "grey";
+    }
+  }
   useEffect(() => {
     function fetchChart() {
       fetch(
@@ -73,11 +83,15 @@ function ChartHome(prop) {
     if (!localWatchlist) {
       setLocalWatchlist([coinName]);
     } else if (localWatchlist.includes(coinName)) {
-      //Remove from watchlist goes here
-      return;
+      let localWatchlistCopy = localWatchlist;
+      let coinIndex = localWatchlist.indexOf(coin);
+      localWatchlistCopy.splice(coinIndex, 1);
+      setLocalWatchlist([...localWatchlistCopy]);
     } else {
       setLocalWatchlist([...localWatchlist, coinName]);
     }
+    console.log(localWatchlist);
+    console.log(localStorage.getItem("watchlist"));
   }
 
   return (
@@ -179,7 +193,7 @@ function ChartHome(prop) {
 
                   <FontAwesomeIcon
                     icon={faStar}
-                    style={{ color: "grey" }}
+                    style={{ color: starColor(coin.id), cursor: "pointer" }}
                     className={"icon"}
                   />
                 </div>
