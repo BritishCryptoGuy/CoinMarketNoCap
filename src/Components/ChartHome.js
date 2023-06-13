@@ -84,14 +84,12 @@ function ChartHome(prop) {
       setLocalWatchlist([coinName]);
     } else if (localWatchlist.includes(coinName)) {
       let localWatchlistCopy = localWatchlist;
-      let coinIndex = localWatchlist.indexOf(coin);
+      let coinIndex = localWatchlist.indexOf(coinName);
       localWatchlistCopy.splice(coinIndex, 1);
       setLocalWatchlist([...localWatchlistCopy]);
     } else {
       setLocalWatchlist([...localWatchlist, coinName]);
     }
-    console.log(localWatchlist);
-    console.log(localStorage.getItem("watchlist"));
   }
 
   return (
