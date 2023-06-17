@@ -36,7 +36,7 @@ function ChartHome(prop) {
     if (!localWatchlist) {
       return;
     } else if (localWatchlist.includes(star)) {
-      return "yellow";
+      return "rgb(255, 0, 0)";
     } else {
       return "grey";
     }

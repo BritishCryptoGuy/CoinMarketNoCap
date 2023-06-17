@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 
 function WatchlistPage(props) {
   const { localWatchlist, setLocalWatchlist, choice, setChoice } = props.prop;
@@ -27,12 +29,11 @@ function WatchlistPage(props) {
       width: "auto",
     },
   };
-  // useEffect(() => {
-  //   const retrieved = localStorage.getItem("watchlist");
-  //   if (retrieved) {
-  //     setLocalWatchlist(JSON.parse(retrieved));
-  //   }
-  // }, [setLocalWatchlist]);
+  useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(localWatchlist));
+    console.log(localWatchlist);
+  }, [localWatchlist]);
+
   useEffect(() => {
     const jointWatchlist = localWatchlist.join("%2C");
     function fetchWatchlist() {
@@ -52,7 +53,7 @@ function WatchlistPage(props) {
         .catch((error) => console.error(error));
     }
     fetchWatchlist();
-  }, [setFetchData]);
+  }, []);
 
   function sort24Hour(e) {
     e.preventDefault();
@@ -67,6 +68,13 @@ function WatchlistPage(props) {
     }
     console.log(sortBy24Hour);
     setFetchData(sortBy24Hour);
+  }
+  function removeWatchlist(coin) {
+    let coinName = coin.target.closest("[data-name]").dataset.name;
+    let localWatchlistCopy = localWatchlist;
+    let coinIndex = localWatchlist.indexOf(coinName);
+    localWatchlistCopy.splice(coinIndex, 1);
+    setLocalWatchlist([...localWatchlistCopy]);
   }
 
   return (
@@ -125,13 +133,17 @@ function WatchlistPage(props) {
                 className="chartHomeDiv"
                 style={watchlistStyle.coinDiv}
                 onClick={(e) => {
-                  let cryptoSelection =
-                    e.target.closest("[data-name]").dataset.name;
-                  let navName = "/currency/" + cryptoSelection;
-                  setChoice(navName);
-                  navigate(navName, {
-                    state: { selected: cryptoSelection },
-                  });
+                  if (e.target.localName === "path") {
+                    return removeWatchlist(e);
+                  } else {
+                    let cryptoSelection =
+                      e.target.closest("[data-name]").dataset.name;
+                    let navName = "/currency/" + cryptoSelection;
+                    setChoice(navName);
+                    navigate(navName, {
+                      state: { selected: cryptoSelection },
+                    });
+                  }
                 }}
               >
                 <div
@@ -163,6 +175,13 @@ function WatchlistPage(props) {
                 </p>
                 <p>{coin.circulating_supply?.toLocaleString()}</p>
                 <p>{coin.total_supply?.toLocaleString()}</p>
+                <div>
+                  <FontAwesomeIcon
+                    icon={faCircleXmark}
+                    style={{ padding: "10px" }}
+                    onClick={removeWatchlist}
+                  />
+                </div>
               </div>
             ))}
         </div>
