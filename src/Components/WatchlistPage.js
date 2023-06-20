@@ -6,7 +6,6 @@ import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 function WatchlistPage(props) {
   const { localWatchlist, setLocalWatchlist, choice, setChoice } = props.prop;
   const [fetchData, setFetchData] = useState(false);
-  const [chart, setChart] = useState(false);
   const navigate = useNavigate();
   const watchlistStyle = {
     mainDiv: {
@@ -29,10 +28,6 @@ function WatchlistPage(props) {
       width: "auto",
     },
   };
-  useEffect(() => {
-    localStorage.setItem("watchlist", JSON.stringify(localWatchlist));
-    console.log(localWatchlist);
-  }, [localWatchlist]);
 
   useEffect(() => {
     const jointWatchlist = localWatchlist.join("%2C");
@@ -69,12 +64,18 @@ function WatchlistPage(props) {
     console.log(sortBy24Hour);
     setFetchData(sortBy24Hour);
   }
+
   function removeWatchlist(coin) {
     let coinName = coin.target.closest("[data-name]").dataset.name;
-    let localWatchlistCopy = localWatchlist;
+    let fetchIndex = fetchData.findIndex((e) => e.id === coinName);
     let coinIndex = localWatchlist.indexOf(coinName);
-    localWatchlistCopy.splice(coinIndex, 1);
-    setLocalWatchlist([...localWatchlistCopy]);
+    let newFetchData = [...fetchData];
+    let newLocalData = [...localWatchlist];
+    newLocalData.splice(coinIndex, 1);
+    newFetchData.splice(fetchIndex, 1);
+    localStorage.setItem("watchlist", JSON.stringify(newLocalData));
+    setLocalWatchlist(newLocalData);
+    setFetchData(newFetchData);
   }
 
   return (
@@ -133,8 +134,8 @@ function WatchlistPage(props) {
                 className="chartHomeDiv"
                 style={watchlistStyle.coinDiv}
                 onClick={(e) => {
-                  if (e.target.localName === "path") {
-                    return removeWatchlist(e);
+                  if (e.target.localName === "path" || "svg") {
+                    return;
                   } else {
                     let cryptoSelection =
                       e.target.closest("[data-name]").dataset.name;
@@ -178,7 +179,7 @@ function WatchlistPage(props) {
                 <div>
                   <FontAwesomeIcon
                     icon={faCircleXmark}
-                    style={{ padding: "10px" }}
+                    style={{ padding: "10px", cursor: "pointer" }}
                     onClick={removeWatchlist}
                   />
                 </div>

@@ -148,7 +148,7 @@ function ChartHome(prop) {
                   className="chartHomeDiv"
                   style={chartHomeStyle.coinDiv}
                   onClick={(e) => {
-                    if (e.target.localName === "path") {
+                    if (e.target.localName === "path" || "svg") {
                       watchlist(e);
                     } else {
                       let cryptoSelection =
