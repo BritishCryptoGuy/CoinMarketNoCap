@@ -6,8 +6,7 @@ const headerStyle = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    boxShadow: "0.5px 0.5px 0.5px 0.5px black",
-    backgroundColor: "white",
+    boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.1)",
   },
   h1Style: {
     fontFamily:

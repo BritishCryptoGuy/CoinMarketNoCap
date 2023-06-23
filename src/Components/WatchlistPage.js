@@ -80,15 +80,7 @@ function WatchlistPage(props) {
 
   return (
     <div style={watchlistStyle.mainDiv}>
-      <h1
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          padding: "20px",
-        }}
-      >
-        Your Watchlist
-      </h1>
+      <h1 className="divTitle">Your Watchlist</h1>
       {!fetchData && (
         <div>
           <h1 style={{ display: "flex", justifyContent: "center" }}>

@@ -31,18 +31,7 @@ function TrendingHome(prop) {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          padding: "10px",
-          backgroundColor: "white",
-          margin: "15px auto 20px auto",
-          width: "80%",
-          borderRadius: "13px",
-          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-        }}
-      >
+      <div className="divTitle">
         <h1>Top trending cryptocurrencies </h1>
       </div>
       <div style={trendingStyle.trendingDiv}>
@@ -69,9 +58,7 @@ function TrendingHome(prop) {
                   alignItems: "center",
                 }}
               >
-                <h1 style={{ color: "red", margin: "0 0 10px 0" }}>
-                  #{index + 1}
-                </h1>
+                <h1 className="trendingH1">#{index + 1}</h1>
                 <img src={coin.item.small} alt="Coin logo" />
               </div>
               <h3>{coin.item.name}</h3>
