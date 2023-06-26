@@ -29,7 +29,6 @@ function Header() {
         </h1>
 
         <nav>
-          <NavLink to="/portfolio">Portfolio</NavLink>
           <NavLink to="/watchlist">Watchlist</NavLink>
         </nav>
       </div>

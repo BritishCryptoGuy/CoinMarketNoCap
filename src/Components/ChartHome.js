@@ -6,6 +6,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 function ChartHome(prop) {
   let { choice, setChoice, localWatchlist, setLocalWatchlist } = prop.prop;
   const [chart, setChart] = useState(false);
+  const [failedFetch, setFailedFetch] = useState(false);
   const navigate = useNavigate();
 
   const chartHomeStyle = {
@@ -57,6 +58,7 @@ function ChartHome(prop) {
         .catch((error) => {
           console.error(error);
           console.log(error);
+          setFailedFetch(true);
         });
     }
     !chart && fetchChart();
@@ -104,12 +106,24 @@ function ChartHome(prop) {
         >
           Cryptocurrencies by Market cap
         </h1>
-        {!chart && (
-          <div>
-            <h1 style={{ display: "flex", justifyContent: "center" }}>
-              Loading!
-            </h1>
-          </div>
+        {!chart && failedFetch ? (
+          <h1
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              color: "#8c1c13",
+            }}
+          >
+            CORS Error! API limit reached, please wait 2 minutes and refresh.
+          </h1>
+        ) : (
+          !chart && (
+            <div>
+              <h1 style={{ display: "flex", justifyContent: "center" }}>
+                Loading!
+              </h1>
+            </div>
+          )
         )}
         {chart && (
           <div>
@@ -148,7 +162,9 @@ function ChartHome(prop) {
                   className="chartHomeDiv"
                   style={chartHomeStyle.coinDiv}
                   onClick={(e) => {
-                    if (e.target.localName === "path" || "svg") {
+                    if (e.target.localName === "path") {
+                      watchlist(e);
+                    } else if (e.target.localName === "svg") {
                       watchlist(e);
                     } else {
                       let cryptoSelection =

@@ -34,6 +34,7 @@ const priceChartStyle = {
 function PriceChart(prop) {
   let cryptoName = prop.prop.id;
   let [cryptoObj, setCryptoObj] = useState(false);
+  let [priceButton, setPriceButton] = useState("7d");
 
   function fetchChart(days) {
     fetch(
@@ -56,7 +57,6 @@ function PriceChart(prop) {
   }, [setCryptoObj]);
 
   function changeDataRange(req) {
-    console.log(req);
     if (req === "Max") {
       fetchChart("max");
     } else if (req === "24h") {
@@ -91,6 +91,19 @@ function PriceChart(prop) {
       },
     ],
   };
+  const priceButtonValues = [
+    "24h",
+    "7d",
+    "14d",
+    "30d",
+    "90d",
+    "180d",
+    "1y",
+    "Max",
+  ];
+  function priceButtonClick(btn) {
+    setPriceButton(btn.target.id);
+  }
 
   return (
     <div style={{ width: "70%" }}>
@@ -99,14 +112,17 @@ function PriceChart(prop) {
         style={{ display: "flex", justifyContent: "space-evenly" }}
         onClick={(e) => changeDataRange(e.target.innerHTML)}
       >
-        <p style={priceChartStyle.button}>24h</p>
-        <p style={priceChartStyle.button}>7d</p>
-        <p style={priceChartStyle.button}>14d</p>
-        <p style={priceChartStyle.button}>30d</p>
-        <p style={priceChartStyle.button}>90d</p>
-        <p style={priceChartStyle.button}>180d</p>
-        <p style={priceChartStyle.button}>1y</p>
-        <p style={priceChartStyle.button}>Max</p>
+        {priceButtonValues.map((e) => (
+          <p
+            style={priceChartStyle.button}
+            onClick={priceButtonClick}
+            id={e}
+            key={e + "key"}
+            className={priceButton === e ? "priceRed" : "priceWhite"}
+          >
+            {e}
+          </p>
+        ))}
       </div>
     </div>
   );

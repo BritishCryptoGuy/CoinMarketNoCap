@@ -54,7 +54,8 @@ a:hover {
   margin: 10px 0px;
   background-color: white;
 }
-.card:hover {
+.card:hover,
+.priceWhite:hover {
   background-color: #8c1c13;
   color: white;
 }
@@ -110,6 +111,10 @@ a:hover {
 }
 .red {
   color: rgb(255, 0, 0);
+}
+.priceRed {
+  background-color: #8c1c13;
+  color: white;
 }
 .grey {
   color: #b3b5bb;

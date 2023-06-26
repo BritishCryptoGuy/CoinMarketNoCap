@@ -20,7 +20,6 @@ function TrendingHome(prop) {
           accept: "application/json",
         },
         method: "GET",
-        // mode: "no-cors",
       })
         .then((response) => response.json())
         .then((data) => setTrending(data.coins))

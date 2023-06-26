@@ -6,6 +6,7 @@ import { faCircleXmark } from "@fortawesome/free-regular-svg-icons";
 function WatchlistPage(props) {
   const { localWatchlist, setLocalWatchlist, choice, setChoice } = props.prop;
   const [fetchData, setFetchData] = useState(false);
+  const [failedFetch, setFailedFetch] = useState(false);
   const navigate = useNavigate();
   const watchlistStyle = {
     mainDiv: {
@@ -52,7 +53,6 @@ function WatchlistPage(props) {
 
   function sort24Hour(e) {
     e.preventDefault();
-    console.log(e.target);
     e.target.toggleAttribute("descending");
     let filterBy = e.target.attributes[0].nodeValue;
     let sortBy24Hour;
@@ -61,7 +61,6 @@ function WatchlistPage(props) {
     } else {
       sortBy24Hour = [...fetchData].sort((a, b) => a[filterBy] - b[filterBy]);
     }
-    console.log(sortBy24Hour);
     setFetchData(sortBy24Hour);
   }
 
@@ -81,12 +80,24 @@ function WatchlistPage(props) {
   return (
     <div style={watchlistStyle.mainDiv}>
       <h1 className="divTitle">Your Watchlist</h1>
-      {!fetchData && (
-        <div>
-          <h1 style={{ display: "flex", justifyContent: "center" }}>
-            Loading!
-          </h1>
-        </div>
+      {!fetchData && failedFetch ? (
+        <h1
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            color: "#8c1c13",
+          }}
+        >
+          CORS Error! API limit reached, please wait 2 minutes and refresh.
+        </h1>
+      ) : (
+        !fetchData && (
+          <div>
+            <h1 style={{ display: "flex", justifyContent: "center" }}>
+              Loading!
+            </h1>
+          </div>
+        )
       )}
       {fetchData && (
         <div>

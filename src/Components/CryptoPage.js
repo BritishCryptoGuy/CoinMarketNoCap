@@ -120,7 +120,6 @@ function CryptoPage(props) {
           </div>
           <MarketAndVolume prop={currency} />
           <div id="chartAndDescription">
-            {/* <div style={{ width: "70%" }}></div> */}
             <PriceChart prop={currency} />
             <Description prop={currency} />
           </div>
