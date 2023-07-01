@@ -37,6 +37,12 @@ a {
 a:hover {
   color: #8c1c13;
 }
+.headerTitle {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
+    Helvetica, Arial, sans-serif;
+  color: black;
+  cursor: pointer;
+}
 .trendingH1 {
   color: #8c1c13;
   margin: 0 0 10px 0;
@@ -91,6 +97,14 @@ a:hover {
 .btn:hover {
   background-color: white;
 }
+.chartHomeDiv {
+  width: 100%;
+  padding: 10px;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px dotted grey;
+}
 
 .chartHomeDiv p {
   width: 18%;
@@ -101,9 +115,13 @@ a:hover {
   padding: 10px;
   background-color: white;
   margin: 15px auto 20px auto;
-  width: 80%;
+  width: 100%;
   border-radius: 13px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.logoImage {
+  height: 60px;
+  width: auto;
 }
 
 .green {
@@ -154,4 +172,34 @@ a:hover {
   background-color: rgb(255, 255, 159, 0.6);
   padding: 2px;
   color: black;
+}
+
+@media (max-width: 770px) {
+  .divTitle {
+    font-size: small;
+  }
+  .headerTitle {
+    font-size: x-large;
+  }
+  .logoImage {
+    height: 30px;
+  }
+  .chartHomeDiv {
+    font-size: x-small;
+  }
+  .chartHomeDiv p {
+    word-wrap: break-word;
+  }
+}
+
+@media (max-width: 500px) {
+  .divTitle {
+    font-size: x-small;
+  }
+  .logoImage {
+    height: 15px;
+  }
+  .chartHomeDiv {
+    font-size: xx-small;
+  }
 }

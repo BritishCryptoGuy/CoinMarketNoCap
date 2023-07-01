@@ -8,12 +8,7 @@ const headerStyle = {
     justifyContent: "space-between",
     boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.1)",
   },
-  h1Style: {
-    fontFamily:
-      "Inter,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,Helvetica,Arial,sans-serif",
-    color: "black",
-    cursor: "pointer",
-  },
+
   spanStyle: {
     color: "#8C1C13",
   },
@@ -24,7 +19,7 @@ function Header() {
   return (
     <>
       <div style={headerStyle.headerDiv}>
-        <h1 style={headerStyle.h1Style} onClick={() => navigate("/")}>
+        <h1 className="headerTitle" onClick={() => navigate("/")}>
           CoinMarket<span style={headerStyle.spanStyle}>No</span>Cap
         </h1>
 

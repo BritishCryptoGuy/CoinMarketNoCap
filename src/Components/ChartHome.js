@@ -17,20 +17,8 @@ function ChartHome(prop) {
       width: "100%",
       margin: "auto",
     },
-    coinDiv: {
-      width: "100%",
-      padding: "10px",
-      height: "5%",
-      display: "flex",
-      alignItems: "center",
-      borderBottom: "1px dotted grey",
-    },
     cursor: {
       cursor: "pointer",
-    },
-    image: {
-      height: "60px",
-      width: "auto",
     },
   };
   function starColor(star) {
@@ -97,15 +85,15 @@ function ChartHome(prop) {
   return (
     <>
       <div style={chartHomeStyle.mainDiv}>
-        <h1
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            padding: "20px",
-          }}
-        >
-          Cryptocurrencies by Market cap
-        </h1>
+        <div className="divTitle">
+          <h1
+            style={{
+              padding: "20px",
+            }}
+          >
+            Cryptocurrencies by Market cap
+          </h1>
+        </div>
         {!chart && failedFetch ? (
           <h1
             style={{
@@ -127,7 +115,7 @@ function ChartHome(prop) {
         )}
         {chart && (
           <div>
-            <div className="chartHomeDiv cursor" style={chartHomeStyle.coinDiv}>
+            <div className="chartHomeDiv cursor">
               <div
                 style={{
                   display: "flex",
@@ -160,7 +148,6 @@ function ChartHome(prop) {
                   data-name={coin.id}
                   key={index}
                   className="chartHomeDiv"
-                  style={chartHomeStyle.coinDiv}
                   onClick={(e) => {
                     if (e.target.localName === "path") {
                       watchlist(e);
@@ -186,7 +173,7 @@ function ChartHome(prop) {
                   >
                     <h2>{coin.market_cap_rank}</h2>
                     <img
-                      style={chartHomeStyle.image}
+                      className="logoImage"
                       src={coin.image}
                       alt="Coin logo"
                     />
