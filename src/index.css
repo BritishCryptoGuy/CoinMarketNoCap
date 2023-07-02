@@ -119,6 +119,18 @@ a:hover {
   border-radius: 13px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.cryptoPageTitle {
+  font-size: 40px;
+}
+.cryptoPagePriceTitle {
+  font-size: 25px;
+  padding-bottom: 10px;
+}
+.cryptoPageLogo {
+  width: auto;
+  height: 5em;
+  padding: 0px 10px;
+}
 .logoImage {
   height: 60px;
   width: auto;
@@ -147,16 +159,24 @@ a:hover {
 }
 #marketCapDiv {
   display: flex;
-  justify-content: space-evenly;
-  border-top: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
+  flex-wrap: wrap;
+  justify-content: center;
   margin: 20px 10px 50px 10px;
-  height: 150px;
+  height: auto;
+}
+.cryptoPagePriceDiv {
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 1;
+  flex-direction: column;
+  font-size: 15px;
 }
 .marketCol {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   padding: 10px;
+  box-shadow: 0px 0px 2px 0px grey;
 }
 .border {
   height: auto;
@@ -166,6 +186,9 @@ a:hover {
 #chartAndDescription {
   display: flex;
   border-top: #b3b5bb 1px solid;
+}
+.chartDiv {
+  width: 70%;
 }
 
 #descriptionData a {
@@ -190,6 +213,25 @@ a:hover {
   .chartHomeDiv p {
     word-wrap: break-word;
   }
+  .cryptoPageTitle {
+    font-size: 30px;
+  }
+  .cryptoPageLogo {
+    height: 3em;
+  }
+  .cryptoPagePriceTitle {
+    font-size: 20px;
+  }
+  #chartAndDescription {
+    flex-direction: column;
+    align-items: center;
+  }
+  .chartDiv {
+    width: 100%;
+  }
+  #descriptionDiv {
+    width: 100%;
+  }
 }
 
 @media (max-width: 500px) {
@@ -201,5 +243,17 @@ a:hover {
   }
   .chartHomeDiv {
     font-size: xx-small;
+  }
+  .cryptoPageTitle {
+    font-size: 15px;
+  }
+  .cryptoPageLogo {
+    height: 2em;
+  }
+  .cryptoPagePriceTitle {
+    font-size: 13px;
+  }
+  .cryptoPagePriceDiv {
+    font-size: 12px;
   }
 }

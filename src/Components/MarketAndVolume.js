@@ -23,7 +23,6 @@ function MarketAndVolume(props) {
           </p>
         </div>
       </div>
-      <div className="border"></div>
       <div className="marketCol">
         <h3 className="grey" style={{ paddingBottom: "10px" }}>
           Fully Diluted Market Cap
@@ -36,7 +35,6 @@ function MarketAndVolume(props) {
           </p>
         </div>
       </div>
-      <div className="border"></div>
 
       <div className="marketCol">
         <h3 className="grey" style={{ paddingBottom: "10px" }}>
@@ -49,7 +47,6 @@ function MarketAndVolume(props) {
           </p>
         </div>
       </div>
-      <div className="border"></div>
 
       <div className="marketCol">
         <h3 className="grey" style={{ paddingBottom: "10px" }}>

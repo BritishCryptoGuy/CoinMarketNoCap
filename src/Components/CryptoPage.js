@@ -29,11 +29,6 @@ function CryptoPage(props) {
       flexDirection: "column",
       fontSize: "50px",
     },
-    logo: {
-      width: "auto",
-      height: "5em",
-      padding: "0px 10px",
-    },
   };
   useEffect(() => {
     function fetchCurrency() {
@@ -75,24 +70,16 @@ function CryptoPage(props) {
                 alignItems: "center",
               }}
             >
-              <p style={{ fontSize: "40px" }}>{currency.name} </p>
+              <p className="cryptoPageTitle">{currency.name} </p>
 
               <img
                 src={currency.image?.large || noImgFound}
-                style={cryptoPageStyle.logo}
+                className="cryptoPageLogo"
                 alt={currency.name + " logo"}
               />
             </div>
-            <div
-              style={{
-                width: "70%",
-                display: "flex",
-                alignItems: "flex-end",
-                flexDirection: "column",
-                fontSize: "15px",
-              }}
-            >
-              <p style={{ fontSize: "25px", paddingBottom: "10px" }}>
+            <div className="cryptoPagePriceDiv">
+              <p className="cryptoPagePriceTitle">
                 ${currency.market_data?.current_price.usd || "N/A"}
                 <span
                   className={
@@ -102,18 +89,25 @@ function CryptoPage(props) {
                   }
                   style={{ paddingLeft: "20px" }}
                 >
-                  {currency.market_data?.price_change_percentage_24h || "N/A"}
+                  {currency.market_data?.price_change_percentage_24h &&
+                  currency.market_data?.price_change_percentage_24h > 0
+                    ? "+"
+                    : ""}
+                  {currency.market_data?.price_change_percentage_24h || "N/A"}%
                 </span>
               </p>
               <div
                 style={{
                   display: "flex",
-                  justifyContent: "space-between",
-                  width: "40%",
+                  justifyContent: "flex-end",
+                  width: "100%",
                   color: "grey",
+                  wordWrap: "break-word",
                 }}
               >
-                <p>Low 24H: ${currency.market_data?.low_24h.usd || "N/A"}</p>
+                <p style={{ paddingRight: "10px" }}>
+                  Low 24H: ${currency.market_data?.low_24h.usd || "N/A"}
+                </p>
                 <p>High 24H: ${currency.market_data?.high_24h.usd || "N/A"}</p>
               </div>
             </div>

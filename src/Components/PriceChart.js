@@ -106,7 +106,7 @@ function PriceChart(prop) {
   }
 
   return (
-    <div style={{ width: "70%" }}>
+    <div className="chartDiv">
       <Line options={options} data={data} />
       <div
         style={{ display: "flex", justifyContent: "space-evenly" }}
