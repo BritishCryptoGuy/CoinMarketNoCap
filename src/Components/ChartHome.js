@@ -114,20 +114,12 @@ function ChartHome(prop) {
           )
         )}
         {chart && (
-          <div>
+          <div style={{ padding: "0px 10px" }}>
             <div className="chartHomeDiv cursor">
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  paddingLeft: "18px",
-                  width: "10%",
-                }}
-              >
-                <h2 data-sort="market_cap_rank" onClick={sort24Hour}>
-                  #
-                </h2>
-              </div>
+              <h2 data-sort="market_cap_rank" onClick={sort24Hour}>
+                #
+              </h2>
+              <p></p>
               <p style={{ cursor: "default" }}>Coin Name</p>
               <p data-sort="current_price" onClick={sort24Hour}>
                 Current Price
@@ -140,6 +132,12 @@ function ChartHome(prop) {
               </p>
               <p data-sort="total_supply" onClick={sort24Hour}>
                 Total Supply
+              </p>
+              <p
+                data-sort="watchlist"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
+                Watchlist
               </p>
             </div>
             {chart &&
@@ -164,14 +162,8 @@ function ChartHome(prop) {
                     }
                   }}
                 >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-evenly",
-                      width: "10%",
-                    }}
-                  >
-                    <h2>{coin.market_cap_rank}</h2>
+                  <h2>{coin.market_cap_rank}</h2>
+                  <div>
                     <img
                       className="logoImage"
                       src={coin.image}

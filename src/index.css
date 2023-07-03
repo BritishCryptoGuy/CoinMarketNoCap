@@ -99,16 +99,16 @@ a:hover {
 }
 .chartHomeDiv {
   width: 100%;
-  padding: 10px;
+  padding: 10px 0;
   height: 5%;
   display: flex;
   align-items: center;
   border-bottom: 1px dotted grey;
 }
-
-.chartHomeDiv p {
-  width: 18%;
+.chartHomeDiv > * {
+  width: 12.5%;
 }
+
 .divTitle {
   display: flex;
   justify-content: center;
@@ -133,7 +133,6 @@ a:hover {
 }
 .logoImage {
   height: 60px;
-  width: auto;
 }
 
 .green {
@@ -207,9 +206,7 @@ a:hover {
   .logoImage {
     height: 30px;
   }
-  .chartHomeDiv {
-    font-size: x-small;
-  }
+
   .chartHomeDiv p {
     word-wrap: break-word;
   }
@@ -240,9 +237,6 @@ a:hover {
   }
   .logoImage {
     height: 15px;
-  }
-  .chartHomeDiv {
-    font-size: xx-small;
   }
   .cryptoPageTitle {
     font-size: 15px;
