@@ -16,14 +16,6 @@ function WatchlistPage(props) {
       width: "100%",
       margin: "auto",
     },
-    coinDiv: {
-      width: "100%",
-      padding: "10px",
-      height: "5%",
-      display: "flex",
-      alignItems: "center",
-      borderBottom: "1px dotted grey",
-    },
     image: {
       height: "60px",
       width: "auto",
@@ -100,20 +92,18 @@ function WatchlistPage(props) {
         )
       )}
       {fetchData && (
-        <div>
-          <div className="chartHomeDiv cursor" style={watchlistStyle.coinDiv}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                paddingLeft: "18px",
-                width: "10%",
-              }}
-            >
-              <h2 data-sort="market_cap_rank" onClick={sort24Hour}>
+        <div style={{ padding: "0px 10px" }}>
+          <div className="chartHomeDiv cursor">
+            <div style={{ width: "6%" }}>
+              <h2
+                data-sort="market_cap_rank"
+                onClick={sort24Hour}
+                className="mcapRank"
+              >
                 #
               </h2>
             </div>
+            <div style={{ width: "5%" }}></div>
             <p style={{ cursor: "default" }}>Coin Name</p>
             <p data-sort="current_price" onClick={sort24Hour}>
               Current Price
@@ -127,6 +117,7 @@ function WatchlistPage(props) {
             <p data-sort="total_supply" onClick={sort24Hour}>
               Total Supply
             </p>
+            <div style={{ width: "4%" }}></div>
           </div>
 
           {fetchData &&
@@ -150,20 +141,11 @@ function WatchlistPage(props) {
                   }
                 }}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    width: "10%",
-                  }}
-                >
-                  <h2>{coin.market_cap_rank}</h2>
-
-                  <img
-                    style={watchlistStyle.image}
-                    src={coin.image}
-                    alt="Coin logo"
-                  />
+                <div style={{ width: "6%" }}>
+                  <h2 className="mcapRank">{coin.market_cap_rank}</h2>
+                </div>
+                <div style={{ width: "5%" }}>
+                  <img className="logoImage" src={coin.image} alt="Coin logo" />
                 </div>
                 <p>{coin.name}</p>
 
@@ -179,10 +161,10 @@ function WatchlistPage(props) {
                 </p>
                 <p>{coin.circulating_supply?.toLocaleString()}</p>
                 <p>{coin.total_supply?.toLocaleString()}</p>
-                <div>
+                <div style={{ width: "4%" }}>
                   <FontAwesomeIcon
                     icon={faCircleXmark}
-                    style={{ padding: "10px", cursor: "pointer" }}
+                    style={{ cursor: "pointer" }}
                     onClick={removeWatchlist}
                   />
                 </div>

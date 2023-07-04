@@ -116,10 +116,15 @@ function ChartHome(prop) {
         {chart && (
           <div style={{ padding: "0px 10px" }}>
             <div className="chartHomeDiv cursor">
-              <h2 data-sort="market_cap_rank" onClick={sort24Hour}>
-                #
-              </h2>
-              <p></p>
+              <div style={{ width: "6%" }}>
+                <h2 data-sort="market_cap_rank" onClick={sort24Hour}>
+                  #
+                </h2>
+              </div>
+              <div
+                className="chartHomeDiv2ndChild"
+                style={{ width: "5%" }}
+              ></div>
               <p style={{ cursor: "default" }}>Coin Name</p>
               <p data-sort="current_price" onClick={sort24Hour}>
                 Current Price
@@ -133,12 +138,15 @@ function ChartHome(prop) {
               <p data-sort="total_supply" onClick={sort24Hour}>
                 Total Supply
               </p>
-              <p
-                data-sort="watchlist"
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                Watchlist
-              </p>
+              <div style={{ width: "4%" }}>
+                <p
+                  data-sort="watchlist"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                ></p>
+              </div>
             </div>
             {chart &&
               chart.map((coin, index) => (
@@ -162,8 +170,10 @@ function ChartHome(prop) {
                     }
                   }}
                 >
-                  <h2>{coin.market_cap_rank}</h2>
-                  <div>
+                  <div style={{ width: "6%" }}>
+                    <h2 className="mcapRank">{coin.market_cap_rank}</h2>
+                  </div>
+                  <div className="chartHomeDiv2ndChild" style={{ width: "5%" }}>
                     <img
                       className="logoImage"
                       src={coin.image}
@@ -186,7 +196,11 @@ function ChartHome(prop) {
 
                   <FontAwesomeIcon
                     icon={faStar}
-                    style={{ color: starColor(coin.id), cursor: "pointer" }}
+                    style={{
+                      color: starColor(coin.id),
+                      cursor: "pointer",
+                      width: "4%",
+                    }}
                     className={"icon"}
                   />
                 </div>
