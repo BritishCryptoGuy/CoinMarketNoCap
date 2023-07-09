@@ -7,6 +7,7 @@ function WatchlistPage(props) {
   const { localWatchlist, setLocalWatchlist, choice, setChoice } = props.prop;
   const [fetchData, setFetchData] = useState(false);
   const [failedFetch, setFailedFetch] = useState(false);
+  const [watchlistStatus, setWatchlistStatus] = useState("Loading");
   const navigate = useNavigate();
   const watchlistStyle = {
     mainDiv: {
@@ -40,7 +41,12 @@ function WatchlistPage(props) {
         })
         .catch((error) => console.error(error));
     }
-    fetchWatchlist();
+    if (jointWatchlist === "") {
+      setWatchlistStatus("Watchlist is empty, please add coins to watchlist!");
+      return;
+    } else if (localWatchlist) {
+      fetchWatchlist();
+    }
   }, []);
 
   function sort24Hour(e) {
@@ -68,7 +74,6 @@ function WatchlistPage(props) {
     setLocalWatchlist(newLocalData);
     setFetchData(newFetchData);
   }
-
   return (
     <div style={watchlistStyle.mainDiv}>
       <h1 className="divTitle">Your Watchlist</h1>
@@ -86,7 +91,7 @@ function WatchlistPage(props) {
         !fetchData && (
           <div>
             <h1 style={{ display: "flex", justifyContent: "center" }}>
-              Loading!
+              {watchlistStatus}
             </h1>
           </div>
         )
