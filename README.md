@@ -1,8 +1,4 @@
-# CoinMarketNoCap
-
-# Website Link
-
-https://coinmarketnocap.netlify.app/
+# [CoinMarketNoCap](https://coinmarketnocap.netlify.app/)
 
 [![License: MIT ](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
