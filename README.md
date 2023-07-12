@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# CoinMarketNoCap
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Website Link
 
-## Available Scripts
+https://coinmarketnocap.netlify.app/
 
-In the project directory, you can run:
+[![License: MIT ](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Description
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This project was a chance for me to explore my skills in React in order to create a website mimicking other crypto websites such as CoinMarketCap and CoinGecko. The website will display the top 100 cryptos and certain information about each. Also the user may add cryptos to their watchlist to keep an eye on them.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Screenshot of completed site
 
-### `npm run build`
+The following image shows part of the web applications finished home appearance
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![The Screenshot displays the home page of the website CoinMarketNoCap. In the screenshot the title and watchlist can be seen in the header. Below them the trending cryptocurrencies can be seen. ](./public/images/coinmarketnocapHomePage.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The following image shows part of the web applications finished individual crypto page appearance
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![The Screenshot displays the crypto page of the individually selected cryptocurrency on the CoinMarketNoCap website. In the screenshot various information about the selected cryptocurrency can be seen. At the bottom of the screenshot a part of the cryptos price chart can be seen](./public/images/coinmarketnocapCryptoPage.png)
 
-### `npm run eject`
+## Table of Contents
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. [Usage](#usage)
+2. [License](#license)
+3. [Questions](#questions)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+To use you mustly simply go to the website and explore! In its current form it is limited due to Coingecko API having a small cap for requests every 2 minutes.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+MIT
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Questions
 
-### Analyzing the Bundle Size
+In order to reach out for questions and feedback please use the following:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Github link: [BritishCryptoGuy](https://github.com/BritishCryptoGuy)
 
-### Making a Progressive Web App
+Email adress: Kieran_parkinson@hotmail.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# Website Link
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://coinmarketnocap.netlify.app/
